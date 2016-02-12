@@ -1,0 +1,7 @@
+0. arrive on page
+1. register user
+2. login
+3. register pills
+4. view schedule
+5. see alert card
+6. add alert methods to card
