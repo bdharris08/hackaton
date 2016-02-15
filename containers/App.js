@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
-//import Splash from '../components/Splash'
+import Splash from '../components/Splash'
 
 class App extends Component {
   constructor(props) {
