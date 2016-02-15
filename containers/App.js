@@ -39,46 +39,54 @@ class App extends Component {
   render() {
     return (
         <div>
-          <Splash />
-          <h1>Phil-osophy</h1> 
+          <div>
+            <Splash />
+          </div>
+          <div>
+            <h1>Phil-osophy</h1> 
 
-            <ul> 
-              <li>Register Pills</li>
-              <li>View Schedule</li>
-              <li>Create Schedule</li>
-              <li>Add Alerts</li>
-            </ul> 
-
-            <h3>Questions</h3> 
-            <ul> 
-              <li>Feature for traveling</li> 
-            </ul>
-
-            <h2>Add Perscription</h2>
-            <ul> 
-                  <li>Perscription Type</li> 
-                  <li>Frequency</li> 
-                  <li>Num of Pills</li>
-                  <li>Urgency/Alerts</li> 
-            </ul> 
-
-            <h2>View Sechdule</h2> 
-            <ul>
-                <li>Show sechudle of the pills and the days/times that you need to take them</li> 
-            </ul>
-
-            <h2>Add Alert</h2> 
-            <ul> 
-              <li>Name</li> 
-              <li>Phone number</li> 
-              <li>Email</li> 
-              <li>Condition for alert</li> 
               <ul> 
+                <li>Register Pills</li>
+                <li>View Schedule</li>
+                <li>Create Schedule</li>
+                <li>Add Alerts</li>
+              </ul> 
+
+              <h3>Questions</h3> 
+              <ul> 
+                <li>Feature for traveling</li> 
+              </ul>
+
+              <h2>Add Perscription</h2>
+              <ul> 
+<<<<<<< HEAD
                 <li>Associated medication</li> 
                 <li>Time since taken medication</li> 
-              </ul>
-            </ul> 
+=======
+                    <li>Perscription Type</li> 
+                    <li>Frequency</li> 
+                    <li>Num of Pills</li>
+                    <li>Urgency/Alerts</li> 
+              </ul> 
 
+              <h2>View Sechdule</h2> 
+              <ul>
+                  <li>Show sechudle of the pills and the days/times that you need to take them</li> 
+>>>>>>> origin/master
+              </ul>
+
+              <h2>Add Alert</h2> 
+              <ul> 
+                <li>Name</li> 
+                <li>Phone number</li> 
+                <li>Email</li> 
+                <li>Condition for alert</li> 
+                <ul> 
+                  <li>Associated medication</li> 
+                  <li>Time since taken medication</li> 
+                </ul>
+              </ul> 
+            </div>
         </div>
       )
   }
