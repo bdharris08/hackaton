@@ -6,7 +6,7 @@ import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 export default class Splash extends Component {
   render() {
     return (
-      <Navbar inverse>
+      <Navbar inverse className="Navbar">
 	    <Navbar.Header>
 	      <Navbar.Brand>
 	        <a href="#">React-Bootstrap</a>
