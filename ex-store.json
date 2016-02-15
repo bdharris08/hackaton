@@ -1,0 +1,38 @@
+
+
+{
+	"userName":"Lino",
+
+	"perscriptions": [
+		{ 
+			"Perscription": "Pill Name",
+			"Frequency": "",
+			"Duration": "", 
+			"NumOfPills": "", 
+			"PillsLeft": ""
+		} 
+	], 
+
+	"Reminders": [
+		{
+			"ReminderName": "",
+			"Frequency": "",
+			"MessageText": "",
+			"People"
+		}
+
+	], 
+
+	"People": [
+		{
+			"Name": "",
+			"PhoneNumber": "",
+			"Email": "",
+			"Relation"
+		}
+
+	]
+
+	
+
+}
