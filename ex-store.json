@@ -3,9 +3,9 @@
 {
 	"userName":"Lino",
 
-	"perscriptions": [
+	"Prescriptions": [
 		{ 
-			"Perscription": "Pill Name",
+			"Prescription": "Pill Name",
 			"Frequency": "",
 			"Duration": "", 
 			"NumOfPills": "", 

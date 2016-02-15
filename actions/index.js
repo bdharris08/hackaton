@@ -1,9 +1,45 @@
 import fetch from 'isomorphic-fetch'
 
+export const CHANGE_USER = "CHANGE_USER"
+export const CREATE_PRESCRIPTION = "CREATE_PRESCRIPTION"
+export const EDIT_PRESCRIPTION = "EDIT_PRESCRIPTION"
+export const DELETE_PRESCRIPTION = "DELETE_PRESCRIPTION"
+//todo remove reddit stuff
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_REDDIT = 'SELECT_REDDIT'
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
+
+
+export function changeUser(userName) {
+  return {
+    type: CHANGE_USER,
+    userName
+  }
+}
+
+export function createPrescription(prescription) {
+  return {
+    type: CREATE_PRESCRIPTION,
+    prescription
+  }
+}
+
+export function editPrescription(prescription) {
+  return {
+    type: EDIT_PRESCRIPTION,
+    prescription
+  }
+}
+
+export function deletePrescription(prescription) {
+  return {
+    type: DELETE_PRESCRIPTION,
+    prescription
+  }
+}
+
+/* todo: remove reddit stuff */
 
 export function selectReddit(reddit) {
   return {

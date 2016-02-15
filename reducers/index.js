@@ -1,8 +1,23 @@
 import { combineReducers } from 'redux'
 import {
+  CHANGE_USER, 
+  CREATE_PRESCRIPTION, EDIT_PRESCRIPTION, DELETE_PRESCRIPTION,
   SELECT_REDDIT, INVALIDATE_REDDIT,
   REQUEST_POSTS, RECEIVE_POSTS
 } from '../actions'
+
+//change the user to the entered name (check input??)
+function userName(state = "", action) {
+  switch (action.type) {
+    case CHANGE_USER:
+      return Object.assign({}, state, {
+        userName: action.userName
+      })
+    default:
+      return state
+  }
+}
+
 
 function selectedReddit(state = 'reactjs', action) {
   switch (action.type) {
@@ -54,6 +69,7 @@ function postsByReddit(state = { }, action) {
 }
 
 const rootReducer = combineReducers({
+  userName,
   postsByReddit,
   selectedReddit
 })

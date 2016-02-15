@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
-import Splash from '../components/Splash'
+import Navigation from '../components/Navigation'
 
 class App extends Component {
   constructor(props) {
@@ -40,10 +40,10 @@ class App extends Component {
     return (
         <div>
           <div>
-            <Splash />
+            <Navigation />
           </div>
           <div>
-            <h1>Phil-osophy</h1> 
+            <h1>Pillosophy</h1> 
 
               <ul> 
                 <li>Register Pills</li>
@@ -59,10 +59,8 @@ class App extends Component {
 
               <h2>Add Perscription</h2>
               <ul> 
-<<<<<<< HEAD
-                <li>Associated medication</li> 
-                <li>Time since taken medication</li> 
-=======
+                    <li>Associated medication</li> 
+                    <li>Time since taken medication</li> 
                     <li>Perscription Type</li> 
                     <li>Frequency</li> 
                     <li>Num of Pills</li>
@@ -72,7 +70,6 @@ class App extends Component {
               <h2>View Sechdule</h2> 
               <ul>
                   <li>Show sechudle of the pills and the days/times that you need to take them</li> 
->>>>>>> origin/master
               </ul>
 
               <h2>Add Alert</h2> 
@@ -85,7 +82,26 @@ class App extends Component {
                   <li>Associated medication</li> 
                   <li>Time since taken medication</li> 
                 </ul>
-              </ul> 
+              </ul>
+
+              <h1> project todo </h1>
+              <ul>
+                <li>state : done</li>
+                <li>create actions</li>
+                  <ul>
+                    <li>modify user (CRUD allinone) </li>
+                    <li>prescription (CRUD)</li>
+                    <li>after user and prescription alerts (CRUD)</li>
+                  </ul>
+                <li>middleware</li>
+                  <ul>
+                    <li>set up app engine or AWS wit mongo</li>
+                    <li>investigate nodered to setup</li>
+                    <li>CRUD store to database</li>
+                    <li>alert send from store information</li>
+                    <li>store alert information</li>
+                  </ul>
+              </ul>
             </div>
         </div>
       )
