@@ -9,7 +9,7 @@ export default class Splash extends Component {
       <Navbar inverse className="Navbar">
 	    <Navbar.Header>
 	      <Navbar.Brand>
-	        <a href="#">React-Bootstrap</a>
+	        <a href="#">Pillosophy</a>
 	      </Navbar.Brand>
 	      <Navbar.Toggle />
 	    </Navbar.Header>
