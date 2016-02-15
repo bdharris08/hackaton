@@ -39,7 +39,25 @@ class App extends Component {
   render() {
     return (
         <div>
-          Hello World
+          <h1>Phil-osophy</h1> 
+
+            <ul> 
+              <li>Register Pills</li>
+              <li>View Schedule</li>
+              <li>Create Schedule</li>
+              <li>Add Alerts</li>
+            </ul> 
+
+            <h2>Add Perscription</h2>
+            <ul> 
+                  <li>Perscription Type</li> 
+                  <li>Frequency</li> 
+                  <li>Num of Pills</li>
+                  <li>Urgency/Alerts</li> 
+
+            </ul> 
+
+
         </div>
       )
   }
