@@ -75,7 +75,7 @@ class App extends Component {
               <li>Condition for alert</li> 
               <ul> 
                 <li>Associated medication</li> 
-                <li>Time since taken medication<li> 
+                <li>Time since taken medication</li> 
               </ul>
             </ul> 
 
