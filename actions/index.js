@@ -4,6 +4,12 @@ export const CHANGE_USER = "CHANGE_USER"
 export const CREATE_PRESCRIPTION = "CREATE_PRESCRIPTION"
 export const EDIT_PRESCRIPTION = "EDIT_PRESCRIPTION"
 export const DELETE_PRESCRIPTION = "DELETE_PRESCRIPTION"
+export const CREATE_REMINDER = "CREATE_REMINDER"
+export const EDIT_REMINDER = "EDIT_REMINDER"
+export const DELETE_REMINDER = "DELETE_REMINDER"
+export const CREATE_CONTACT = "CREATE_CONTACT"
+export const EDIT_CONTACT = "EDIT_CONTACT"
+export const DELETE_CONTACT = "DELETE_CONTACT"
 //todo remove reddit stuff
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
@@ -36,6 +42,48 @@ export function deletePrescription(prescription) {
   return {
     type: DELETE_PRESCRIPTION,
     prescription
+  }
+}
+
+export function createReminder(reminder) {
+  return {
+    type: CREATE_REMINDER,
+    reminder
+  }
+}
+
+export function editReminder(reminder) {
+  return {
+    type: EDIT_REMINDER,
+    reminder
+  }
+}
+
+export function deleteReminder(reminder) {
+  return {
+    type: DELETE_REMINDER,
+    reminder
+  }
+}
+
+export function createContact(contact) {
+  return {
+    type: CREATE_CONTACT,
+    contact
+  }
+}
+
+export function editContact(contact) {
+  return {
+    type: EDIT_CONTACT,
+    contact
+  }
+}
+
+export function deleteContact(contact) {
+  return {
+    type: DELETE_CONTACT,
+    contact
   }
 }
 

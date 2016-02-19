@@ -19,6 +19,7 @@ function userName(state = "", action) {
 }
 
 
+
 function selectedReddit(state = 'reactjs', action) {
   switch (action.type) {
     case SELECT_REDDIT:
@@ -70,8 +71,8 @@ function postsByReddit(state = { }, action) {
 
 const rootReducer = combineReducers({
   userName,
-  postsByReddit,
-  selectedReddit
+  //postsByReddit,
+  //selectedReddit
 })
 
 export default rootReducer
