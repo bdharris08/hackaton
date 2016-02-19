@@ -1,9 +1,10 @@
-//Splash.js
+//Navigation.js
+//the nav bar on top
 
 import React, { Component, PropTypes } from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 
-export default class Splash extends Component {
+export default class Navigation extends Component {
   render() {
     return (
       <Navbar inverse className="Navbar">
@@ -35,6 +36,6 @@ export default class Splash extends Component {
   }
 }
 
-Splash.propTypes = {
+Navigation.propTypes = {
   //posts: PropTypes.array.isRequired
 }

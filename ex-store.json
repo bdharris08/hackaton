@@ -5,11 +5,15 @@
 
 	"Prescriptions": [
 		{ 
-			"Prescription": "Pill Name",
-			"Frequency": "",
-			"Duration": "", 
-			"NumOfPills": "", 
-			"PillsLeft": ""
+			"ID": 1,
+      "Name": "Pill Name",
+      "NumOfDoses": 300, 
+      "DoseTimes": [""],
+      "Frequency": "",
+      "Duration": "", 
+      "PillsTaken": "",
+      "Active": "True", 
+      "OnTrack": "True"
 		} 
 	], 
 

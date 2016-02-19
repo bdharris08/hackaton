@@ -1,15 +1,19 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions'
+import { selectReddit, fetchPostsIfNeeded, invalidateReddit,
+        createPrescription, editPrescription, deletePrescription } from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Navigation from '../components/Navigation'
+import PrescriptionForm from '../containers/PrescriptionForm'
+import { Panel } from 'react-bootstrap'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.handleChange = this.handleChange.bind(this)
     this.handleRefreshClick = this.handleRefreshClick.bind(this)
+    this.handlePrescriptionForm = this.handlePrescriptionForm.bind(this)
   }
 
   componentDidMount() {
@@ -22,6 +26,20 @@ class App extends Component {
       const { dispatch, selectedReddit } = nextProps
       dispatch(fetchPostsIfNeeded(selectedReddit))
     }
+  }
+
+  handlePrescriptionForm(name, doses, times) {
+    const newPrescription = {
+      Name: name,
+      NumOfDoses: doses, 
+      DoseTimes: times,
+      Frequency: times.length,
+      Duration: (doses / times.length), 
+      PillsTaken: 0,
+      Active: "True", 
+      OnTrack: "True"
+    }
+    this.props.dispatch(createPrescription(newPrescription))
   }
 
   handleChange(nextReddit) {
@@ -38,9 +56,15 @@ class App extends Component {
 
   render() {
     return (
+      
         <div>
           <div>
             <Navigation />
+          </div>
+          <div>
+            <Panel>
+              <PrescriptionForm callback={this.handlePrescriptionForm} />
+            </Panel>
           </div>
           <div>
             <h1>Pillosophy</h1> 
@@ -104,6 +128,7 @@ class App extends Component {
               </ul>
             </div>
         </div>
+      
       )
   }
 

@@ -17,6 +17,8 @@ export const SELECT_REDDIT = 'SELECT_REDDIT'
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
 
 
+var nextID = 0
+
 export function changeUser(userName) {
   return {
     type: CHANGE_USER,
@@ -27,6 +29,7 @@ export function changeUser(userName) {
 export function createPrescription(prescription) {
   return {
     type: CREATE_PRESCRIPTION,
+    id: nextID++,
     prescription
   }
 }
