@@ -4,12 +4,20 @@ export const CHANGE_USER = "CHANGE_USER"
 export const CREATE_PRESCRIPTION = "CREATE_PRESCRIPTION"
 export const EDIT_PRESCRIPTION = "EDIT_PRESCRIPTION"
 export const DELETE_PRESCRIPTION = "DELETE_PRESCRIPTION"
+export const CREATE_REMINDER = "CREATE_REMINDER"
+export const EDIT_REMINDER = "EDIT_REMINDER"
+export const DELETE_REMINDER = "DELETE_REMINDER"
+export const CREATE_CONTACT = "CREATE_CONTACT"
+export const EDIT_CONTACT = "EDIT_CONTACT"
+export const DELETE_CONTACT = "DELETE_CONTACT"
 //todo remove reddit stuff
 export const REQUEST_POSTS = 'REQUEST_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_REDDIT = 'SELECT_REDDIT'
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
 
+
+var nextID = 0
 
 export function changeUser(userName) {
   return {
@@ -21,6 +29,7 @@ export function changeUser(userName) {
 export function createPrescription(prescription) {
   return {
     type: CREATE_PRESCRIPTION,
+    id: nextID++,
     prescription
   }
 }

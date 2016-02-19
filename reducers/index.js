@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 import {
   CHANGE_USER, 
-  CREATE_PRESCRIPTION, EDIT_PRESCRIPTION, DELETE_PRESCRIPTION,
+  CREATE_PRESCRIPTION, EDIT_PRESCRIPTION, HIDE_PRESCRIPTION,
+  CREATE_REMINDER, EDIT_REMINDER, HIDE_REMINDER,
+  CREATE_CONTACT, EDIT_CONTACT, HIDE_CONTACT,
   SELECT_REDDIT, INVALIDATE_REDDIT,
   REQUEST_POSTS, RECEIVE_POSTS
 } from '../actions'
@@ -18,6 +20,59 @@ function userName(state = "", action) {
   }
 }
 
+function prescription(state, action) {
+  switch (action.type) {
+    case CREATE_PRESCRIPTION:
+      return {
+        ID: action.id,
+        Name: action.prescription.Name,
+        NumOfDoses: action.prescription.NumOfDoses,
+        DoseTimes: action.prescription.DoseTimes,
+        Frequency: action.prescription.Frequency,
+        Duration: action.prescription.Duration,  
+        PillsTaken: action.prescription.PillsTaken,
+        Active: action.prescription.Active,
+        OnTrack: action.prescription.OnTrack
+      }
+    case EDIT_PRESCRIPTION:
+      if (state.id !== action.id) {
+        return state
+      }
+      return Object.assign({}, state, {
+        Name: action.name 
+      })
+
+    case HIDE_PRESCRIPTION:
+      if (state.id !== action.id) {
+        return state
+      }
+      return Object.assign({}, state, {
+        Active: "False"
+      })
+    default:
+      return state
+    }
+}
+
+function prescriptions(state=[], action) {
+  switch (action.type) {
+    case CREATE_PRESCRIPTION:
+      return [
+        ...state,
+        prescription(undefined, action)
+      ]
+    case EDIT_PRESCRIPTION:
+      return state.map(
+        prescription(item, action)
+      )
+    case HIDE_PRESCRIPTION:
+      return state.map(
+        prescription(item, action)
+      )
+    default:
+      return state
+  }
+}
 
 function selectedReddit(state = 'reactjs', action) {
   switch (action.type) {
@@ -70,6 +125,7 @@ function postsByReddit(state = { }, action) {
 
 const rootReducer = combineReducers({
   userName,
+  prescriptions,
   postsByReddit,
   selectedReddit
 })
