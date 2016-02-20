@@ -9,7 +9,7 @@ import Navigation from '../components/Navigation'
 import PrescriptionForm from '../containers/PrescriptionForm'
 import ContactForm from './ContactForm'
 import Splash from '../components/Splash'
-import { Panel, Grid, Row, Col } from 'react-bootstrap'
+import { Panel, PanelGroup, Grid, Row, Col } from 'react-bootstrap'
 
 class App extends Component {
   constructor(props) {
@@ -83,11 +83,17 @@ class App extends Component {
             <Splash visible={true} />
           </div>
           <div>
-            <Panel header="Create Reminders" bsStyle="info">
+            <PanelGroup defaultActiveKey="1" accordian>
+              <Panel header="Set up account" bsStyle="info" eventKey="1">
 
-              <PrescriptionForm callback={this.handlePrescriptionForm} />
-              <ContactForm callback={this.handleContactForm} />
-            </Panel>
+              </Panel>
+              <Panel header="Add prescriptions" bsStyle="info" eventKey="2">
+                <PrescriptionForm callback={this.handlePrescriptionForm} />
+              </Panel>
+              <Panel header="Add contacts" bsStyle="info" eventKey="3">
+                <ContactForm callback={this.handleContactForm} />
+              </Panel>
+            </PanelGroup>
           </div>
         </div>
       </Grid>
