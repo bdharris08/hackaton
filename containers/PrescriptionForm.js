@@ -6,7 +6,6 @@ import { Button, Input, ButtonInput, Modal } from 'react-bootstrap'
 
 export default class PrescriptionForm extends Component {
 
-
   constructor(props) {
     super(props)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -61,8 +60,8 @@ export default class PrescriptionForm extends Component {
             <Input
               type="text"
               //value={this.state.value}
-              placeholder="Enter text"
-              help="Enter a number."
+              placeholder="Enter a number"
+              //help="Enter a number."
               //bsStyle={this.validationState()}
               hasFeedback
               ref="doses"
@@ -76,7 +75,7 @@ export default class PrescriptionForm extends Component {
               multiple
               //value={this.state.value}
               placeholder="Enter text"
-              help="Hold the ctrl key to select multiple times."
+              help="Hold the ctrl key to select multiple."
               //bsStyle={this.validationState()}
               hasFeedback
               ref="times"
@@ -87,9 +86,8 @@ export default class PrescriptionForm extends Component {
               <option value="asNeeded">As Needed</option>
               <option value="daily">Daily</option>
               <option value="4hours">Every four hours</option>
-              
-
-
+              <option value="morning">Morning</option>
+              <option value="evening">Evening</option>
               <option value="0000">12:00 AM</option>
               <option value="0100">1:00 AM</option>
               <option value="0200">2:00 AM</option>
@@ -118,6 +116,7 @@ export default class PrescriptionForm extends Component {
 
             <ButtonInput bsStyle="primary" type="submit" value="Add Prescription"
               onClick={this.handleSubmit}/>
+
           </Modal.Body>
         </Modal>
       </div>

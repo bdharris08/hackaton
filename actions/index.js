@@ -17,7 +17,9 @@ export const SELECT_REDDIT = 'SELECT_REDDIT'
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
 
 
-var nextID = 0
+var nextPrescription = 0
+var nextContact = 0
+var nextReminder = 0
 
 export function changeUser(userName) {
   return {
@@ -29,7 +31,7 @@ export function changeUser(userName) {
 export function createPrescription(prescription) {
   return {
     type: CREATE_PRESCRIPTION,
-    id: nextID++,
+    id: nextPrescription++,
     prescription
   }
 }
@@ -45,6 +47,28 @@ export function deletePrescription(prescription) {
   return {
     type: DELETE_PRESCRIPTION,
     prescription
+  }
+}
+
+export function createContact(contact) {
+  return {
+    type: CREATE_CONTACT,
+    id: nextContact++,
+    contact
+  }
+}
+
+export function editContact(contact) {
+  return {
+    type: EDIT_CONTACT,
+    contact
+  }
+}
+
+export function deleteContact(contact) {
+  return {
+    type: DELETE_CONTACT,
+    contact
   }
 }
 

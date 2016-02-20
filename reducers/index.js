@@ -74,6 +74,57 @@ function prescriptions(state=[], action) {
   }
 }
 
+function contact(state, action) {
+  switch (action.type) {
+    case CREATE_CONTACT:
+      return {
+        ID: action.id,
+        contactName: action.contact.contactname,
+        phone: action.contact.phone,
+        email: action.contact.email,
+        relationship: action.contact.relationship,
+        Active: action.contact.Active
+      }
+    case EDIT_CONTACT:
+      if (state.id !== action.id) {
+        return state
+      }
+      return Object.assign({}, state, {
+        Name: action.contactname 
+      })
+
+    case HIDE_CONTACT:
+      if (state.id !== action.id) {
+        return state
+      }
+      return Object.assign({}, state, {
+        Active: "False"
+      })
+    default:
+      return state
+    }
+}
+
+function contacts(state=[], action) {
+  switch (action.type) {
+    case CREATE_CONTACT:
+      return [
+        ...state,
+        contact(undefined, action)
+      ]
+    case EDIT_CONTACT:
+      return state.map(
+        contact(item, action)
+      )
+    case HIDE_CONTACT:
+      return state.map(
+        contact(item, action)
+      )
+    default:
+      return state
+  }
+}
+
 function selectedReddit(state = 'reactjs', action) {
   switch (action.type) {
     case SELECT_REDDIT:
@@ -126,6 +177,7 @@ function postsByReddit(state = { }, action) {
 const rootReducer = combineReducers({
   userName,
   prescriptions,
+  contacts,
   postsByReddit,
   selectedReddit
 })

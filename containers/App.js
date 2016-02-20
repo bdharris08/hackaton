@@ -1,12 +1,15 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { selectReddit, fetchPostsIfNeeded, invalidateReddit,
-        createPrescription, editPrescription, deletePrescription } from '../actions'
+        createPrescription, editPrescription, deletePrescription,
+        createContact, editContact, deleteContact} from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Navigation from '../components/Navigation'
 import PrescriptionForm from '../containers/PrescriptionForm'
-import { Panel } from 'react-bootstrap'
+import ContactForm from './ContactForm'
+import Splash from '../components/Splash'
+import { Panel, Grid, Row, Col } from 'react-bootstrap'
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +17,7 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleRefreshClick = this.handleRefreshClick.bind(this)
     this.handlePrescriptionForm = this.handlePrescriptionForm.bind(this)
+    this.handleContactForm = this.handleContactForm.bind(this)
   }
 
   componentDidMount() {
@@ -42,6 +46,17 @@ class App extends Component {
     this.props.dispatch(createPrescription(newPrescription))
   }
 
+  handleContactForm(contactname, phone, email, relationship) {
+    const newContact = {
+      Contact: contactname,
+      Phone: phone,
+      Email: email,
+      Relationship: relationship,
+      Active: "True"
+    }
+    this.props.dispatch(createContact(newContact))
+  }
+
   handleChange(nextReddit) {
     this.props.dispatch(selectReddit(nextReddit))
   }
@@ -56,79 +71,26 @@ class App extends Component {
 
   render() {
     return (
-      
+      <Grid>
+        <Row>
+
+        </Row>
         <div>
           <div>
             <Navigation />
           </div>
           <div>
-            <Panel>
-              <PrescriptionForm callback={this.handlePrescriptionForm} />
-            </Panel>
+            <Splash visible={true} />
           </div>
           <div>
-            <h1>Pillosophy</h1> 
+            <Panel header="Create Reminders" bsStyle="info">
 
-              <ul> 
-                <li>Register Pills</li>
-                <li>View Schedule</li>
-                <li>Create Schedule</li>
-                <li>Add Alerts</li>
-              </ul> 
-
-              <h3>Questions</h3> 
-              <ul> 
-                <li>Feature for traveling</li> 
-              </ul>
-
-              <h2>Add Perscription</h2>
-              <ul> 
-                    <li>Associated medication</li> 
-                    <li>Time since taken medication</li> 
-                    <li>Perscription Type</li> 
-                    <li>Frequency</li> 
-                    <li>Num of Pills</li>
-                    <li>Urgency/Alerts</li> 
-              </ul> 
-
-              <h2>View Sechdule</h2> 
-              <ul>
-                  <li>Show sechudle of the pills and the days/times that you need to take them</li> 
-              </ul>
-
-              <h2>Add Alert</h2> 
-              <ul> 
-                <li>Name</li> 
-                <li>Phone number</li> 
-                <li>Email</li> 
-                <li>Condition for alert</li> 
-                <ul> 
-                  <li>Associated medication</li> 
-                  <li>Time since taken medication</li> 
-                </ul>
-              </ul>
-
-              <h1> project todo </h1>
-              <ul>
-                <li>state : done</li>
-                <li>create actions</li>
-                  <ul>
-                    <li>modify user (CRUD allinone) </li>
-                    <li>prescription (CRUD)</li>
-                    <li>after user and prescription alerts (CRUD)</li>
-                  </ul>
-                <li>middleware</li>
-                  <ul>
-                    <li>set up app engine or AWS wit mongo</li>
-                    <li>investigate nodered to setup</li>
-                    <li>CRUD store to database</li>
-                    <li>alert send from store information</li>
-                    <li>store alert information</li>
-                  </ul>
-              </ul>
-            </div>
+              <PrescriptionForm callback={this.handlePrescriptionForm} />
+              <ContactForm callback={this.handleContactForm} />
+            </Panel>
+          </div>
         </div>
-      
+      </Grid>
       )
   }
 

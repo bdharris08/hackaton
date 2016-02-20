@@ -8,7 +8,7 @@
 			"ID": 1,
       "Name": "Pill Name",
       "NumOfDoses": 300, 
-      "DoseTimes": [""],
+      "Reminders": [""],
       "Frequency": "",
       "Duration": "", 
       "PillsTaken": "",
@@ -27,7 +27,7 @@
 
 	], 
 
-	"People": [
+	"Contacts": [
 		{
 			"Name": "",
 			"PhoneNumber": "",

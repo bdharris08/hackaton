@@ -2,6 +2,7 @@ var webpack = require('webpack')
 var webpackDevMiddleware = require('webpack-dev-middleware')
 var webpackHotMiddleware = require('webpack-hot-middleware')
 var config = require('./webpack.config')
+var express = require('express')
 
 var app = new (require('express'))()
 var port = 3000
@@ -13,6 +14,12 @@ app.use(webpackHotMiddleware(compiler))
 app.get("/", function(req, res) {
   res.sendFile(__dirname + '/index.html')
 })
+
+app.get("/cup-of-coffee-and-pills.jpg", function(req, res) {
+  res.sendFile(__dirname + '/public/cup-of-coffee-and-pills.jpg')
+})
+
+app.use(express.static(__dirname + '/public/'));
 
 app.listen(port, function(error) {
   if (error) {
