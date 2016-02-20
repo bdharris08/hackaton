@@ -50,6 +50,27 @@ export function deletePrescription(prescription) {
   }
 }
 
+export function createReminder(reminder) {
+  return {
+    type: CREATE_REMINDER,
+    reminder
+  }
+}
+
+export function editReminder(reminder) {
+  return {
+    type: EDIT_REMINDER,
+    reminder
+  }
+}
+
+export function deleteReminder(reminder) {
+  return {
+    type: DELETE_REMINDER,
+    reminder
+  }
+}
+
 export function createContact(contact) {
   return {
     type: CREATE_CONTACT,

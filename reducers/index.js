@@ -125,6 +125,7 @@ function contacts(state=[], action) {
   }
 }
 
+
 function selectedReddit(state = 'reactjs', action) {
   switch (action.type) {
     case SELECT_REDDIT:
