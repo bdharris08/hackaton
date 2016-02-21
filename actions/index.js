@@ -1,9 +1,13 @@
 import fetch from 'isomorphic-fetch'
+import jquery from 'jquery'
 
 export const CHANGE_USER = "CHANGE_USER"
 export const CREATE_PRESCRIPTION = "CREATE_PRESCRIPTION"
 export const EDIT_PRESCRIPTION = "EDIT_PRESCRIPTION"
 export const DELETE_PRESCRIPTION = "DELETE_PRESCRIPTION"
+export const SUBMIT_PRESCRIPTION = "SUBMIT_PRESCRIPTION"
+export const POST_SUBSCRIPTION = "POST_SUBSCRIPTION"
+export const RECEIVE_RESPONSE = "RECEIVE_RESPONSE"
 export const CREATE_REMINDER = "CREATE_REMINDER"
 export const EDIT_REMINDER = "EDIT_REMINDER"
 export const DELETE_REMINDER = "DELETE_REMINDER"
@@ -33,6 +37,68 @@ export function createPrescription(prescription) {
     type: CREATE_PRESCRIPTION,
     id: nextPrescription++,
     prescription
+  }
+}
+
+export function submitPrescription(prescription) {
+  return {
+    type: SUBMIT_PRESCRIPTION,
+    prescription
+  }
+}
+
+export function postPrescription(prescription) {
+  return dispatch => {
+    dispatch(submitPrescription(prescription))
+
+    var bodyText = JSON.stringify(prescription)
+    console.log(bodyText)
+
+    //dispatch(submitPrescription(prescription))
+
+    $.ajax({
+      url: 'http://104.197.214.44:9999/savePrescription',
+      dataType: 'json',
+      type: 'POST',
+      cache: false,
+      success: function(data) {
+        console.log('success!');
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(status, err.toString());
+      }.bind(this)
+    })
+
+    //return fetch("http://104.197.214.44:9999/savePrescription", {
+    //  method: 'POST', 
+    //  //dataType: 'json',
+    //  headers: {
+    //    'Accept': '*.*',
+    //    'Content-Type': 'application/json',
+    //    'cache-control': 'no-cache'
+    //  },
+    //  body: '{\"lol\":\"lol\"}',
+    //  mode: 'no-cors'
+    //})
+    //.then((response) => {
+    //    //console.log(response)
+    //    //return response.json()
+    //})
+    //.then((json) => {
+    //  console.log(json)
+    //  dispatch(receiveResponse(json))
+    //})
+  }
+}
+
+export function receiveResponse(json) {
+  console.log(json)
+  return {
+    type: RECEIVE_RESPONSE,
+    status: 'Success',
+    //prescription,
+    response: json.status,
+    receivedAt: "Date.now()"
   }
 }
 

@@ -2,14 +2,15 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { selectReddit, fetchPostsIfNeeded, invalidateReddit,
         createPrescription, editPrescription, deletePrescription,
-        createContact, editContact, deleteContact} from '../actions'
+        submitPrescription, postPrescription, receiveResponse, 
+        createContact, editContact, deleteContact } from '../actions'
 import Picker from '../components/Picker'
 import Posts from '../components/Posts'
 import Navigation from '../components/Navigation'
 import PrescriptionForm from '../containers/PrescriptionForm'
 import ContactForm from './ContactForm'
 import Splash from '../components/Splash'
-import { Panel, PanelGroup, Grid, Row, Col } from 'react-bootstrap'
+import { Panel, PanelGroup, Grid, Row, Col, Button } from 'react-bootstrap'
 
 class App extends Component {
   constructor(props) {
@@ -21,15 +22,15 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedReddit } = this.props
-    dispatch(fetchPostsIfNeeded(selectedReddit))
+    //const { dispatch, selectedReddit } = this.props
+    //dispatch(fetchPostsIfNeeded(selectedReddit))
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedReddit !== this.props.selectedReddit) {
-      const { dispatch, selectedReddit } = nextProps
-      dispatch(fetchPostsIfNeeded(selectedReddit))
-    }
+    //if (nextProps.selectedReddit !== this.props.selectedReddit) {
+     // const { dispatch, selectedReddit } = nextProps
+     // dispatch(fetchPostsIfNeeded(selectedReddit))
+    //}
   }
 
   handlePrescriptionForm(name, doses, times) {
@@ -44,6 +45,7 @@ class App extends Component {
       OnTrack: "True"
     }
     this.props.dispatch(createPrescription(newPrescription))
+    this.handlePostPrescription(newPrescription)
   }
 
   handleContactForm(contactname, phone, email, relationship) {
@@ -59,6 +61,11 @@ class App extends Component {
 
   handleChange(nextReddit) {
     this.props.dispatch(selectReddit(nextReddit))
+  }
+
+  handlePostPrescription(prescription) {
+    console.log(prescription)
+    this.props.dispatch(postPrescription(prescription))
   }
 
   handleRefreshClick(e) {
@@ -94,6 +101,7 @@ class App extends Component {
                 <ContactForm callback={this.handleContactForm} />
               </Panel>
             </PanelGroup>
+            <Button bsStyle="primary" onClick={this.openModal}>New Contact</Button>
           </div>
         </div>
       </Grid>
