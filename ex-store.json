@@ -1,4 +1,32 @@
 
+{
+  "userName": "Lino",
+  "prescriptions": 
+    [
+      {
+      "Name": "advil",
+      "NumOfDoses": "50",
+      "DoseTimes": [
+        {
+        "date": 20160220,
+        "time": 700,
+        "status": "NotTaken"
+        }
+      ],
+      "EndDate": "",
+      "Frequency": 1,
+      "Duration": 50,
+      "PillsTaken " : 0,       
+        "Active " : "True ",      
+      "OnTrack " : "True" 
+    }
+  ], 
+  "contacts " : [ ] 
+}
+
+
+
+-----old--\/--------------
 
 {
 	"userName":"Lino",
@@ -36,7 +64,6 @@
 		}
 
 	]
-
-	
-
 }
+
+{"userName":"","prescriptions":[{"ID":0,"Name":"","NumOfDoses":"","DoseTimes":[],"Frequency":0,"Duration":null,"PillsTaken":0,"Active":"True","OnTrack":"True"},{"ID":1,"Name":"","NumOfDoses":"","DoseTimes":[],"Frequency":0,"Duration":null,"PillsTaken":0,"Active":"True","OnTrack":"True"},{"ID":0,"Name":"","NumOfDoses":"","DoseTimes":[],"Frequency":0,"Duration":null,"PillsTaken":0,"Active":"True","OnTrack":"True"},{"ID":0,"Name":"","NumOfDoses":"","DoseTimes":[],"Frequency":0,"Duration":null,"PillsTaken":0,"Active":"True","OnTrack":"True"},{"ID":1,"Name":"advil","NumOfDoses":"50","DoseTimes":["0700"],"Frequency":1,"Duration":50,"PillsTaken":0,"Active":"True","OnTrack":"True"}],"contacts":[],"postsByReddit":{},"selectedReddit":"reactjs"}

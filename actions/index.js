@@ -25,10 +25,10 @@ var nextPrescription = 0
 var nextContact = 0
 var nextReminder = 0
 
-export function changeUser(userName) {
+export function changeUser(username) {
   return {
     type: CHANGE_USER,
-    userName
+    username: username
   }
 }
 
@@ -58,10 +58,10 @@ export function postPrescription(prescription) {
 
     $.ajax({
       url: 'http://104.197.214.44:9999/savePrescription',
-      //dataType: 'json',
+      dataType: 'json',
       type: 'POST',
       //crossDomain: true,
-      data: bodyText,
+      data: prescription,
       cache: false,
 
       /*headers: {

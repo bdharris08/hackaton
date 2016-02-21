@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { selectReddit, fetchPostsIfNeeded, invalidateReddit,
+        changeUser,
         createPrescription, editPrescription, deletePrescription,
         submitPrescription, postPrescription, receiveResponse, 
         createContact, editContact, deleteContact } from '../actions'
@@ -9,16 +10,19 @@ import Posts from '../components/Posts'
 import Navigation from '../components/Navigation'
 import PrescriptionForm from '../containers/PrescriptionForm'
 import ContactForm from './ContactForm'
+import UserForm from './UserForm'
 import Splash from '../components/Splash'
 import { Panel, PanelGroup, Grid, Row, Col, Button } from 'react-bootstrap'
 
 class App extends Component {
   constructor(props) {
     super(props)
-    this.handleChange = this.handleChange.bind(this)
-    this.handleRefreshClick = this.handleRefreshClick.bind(this)
+    //this.handleChange = this.handleChange.bind(this)
+    //this.handleRefreshClick = this.handleRefreshClick.bind(this)
     this.handlePrescriptionForm = this.handlePrescriptionForm.bind(this)
     this.handleContactForm = this.handleContactForm.bind(this)
+    this.handleUserForm = this.handleUserForm.bind(this)
+    this.handlePostPrescription = this.handlePostPrescription.bind(this)
   }
 
   componentDidMount() {
@@ -33,19 +37,34 @@ class App extends Component {
     //}
   }
 
+   handleUserForm(username, phone) {
+    this.props.dispatch(changeUser(username))
+  }
+
   handlePrescriptionForm(name, doses, times) {
     const newPrescription = {
       Name: name,
       NumOfDoses: doses, 
-      DoseTimes: times,
+      DoseTimes: [],
+      EndDate: "",
       Frequency: times.length,
       Duration: (doses / times.length), 
       PillsTaken: 0,
       Active: "True", 
       OnTrack: "True"
     }
+    //build DoseTimes
+    var today = (new Date()).toISOString().slice(0,10).replace(/-/g,"")
+    times.forEach(atime => {
+      var dose = {
+        date: today,
+        time: atime,
+        status: "NotTaken"
+      }
+      newPrescription.DoseTimes.push(dose)
+    })
     this.props.dispatch(createPrescription(newPrescription))
-    this.handlePostPrescription(newPrescription)
+    //this.handlePostPrescription(newPrescription)
   }
 
   handleContactForm(contactname, phone, email, relationship) {
@@ -59,22 +78,24 @@ class App extends Component {
     this.props.dispatch(createContact(newContact))
   }
 
-  handleChange(nextReddit) {
-    this.props.dispatch(selectReddit(nextReddit))
+ 
+
+  //handleChange(nextReddit) {
+  //  this.props.dispatch(selectReddit(nextReddit))
+  //}
+
+  handlePostPrescription() {
+    console.log(this.props.fullstate)
+    this.props.dispatch(postPrescription(this.props.fullstate))
   }
 
-  handlePostPrescription(prescription) {
-    console.log(prescription)
-    this.props.dispatch(postPrescription(prescription))
-  }
-
-  handleRefreshClick(e) {
-    e.preventDefault()
-
-    const { dispatch, selectedReddit } = this.props
-    dispatch(invalidateReddit(selectedReddit))
-    dispatch(fetchPostsIfNeeded(selectedReddit))
-  }
+  //handleRefreshClick(e) {
+  //  e.preventDefault()
+//
+//    const { dispatch, selectedReddit } = this.props
+//    dispatch(invalidateReddit(selectedReddit))
+//    dispatch(fetchPostsIfNeeded(selectedReddit))
+  //}
 
   render() {
     return (
@@ -92,16 +113,21 @@ class App extends Component {
           <div>
             <PanelGroup defaultActiveKey="1" accordian>
               <Panel header="Set up account" bsStyle="info" eventKey="1">
-
+                {this.props.user.userName != "" &&
+                    <h2>{this.props.user.userName}</h2>
+                }
+                <UserForm callback={this.handleUserForm} />
               </Panel>
-              <Panel header="Add prescriptions" bsStyle="info" eventKey="2">
-                <PrescriptionForm callback={this.handlePrescriptionForm} />
-              </Panel>
-              <Panel header="Add contacts" bsStyle="info" eventKey="3">
+              {/*<Panel header="Add contacts" bsStyle="info" eventKey="3">
                 <ContactForm callback={this.handleContactForm} />
+              </Panel>*/}
+              <Panel header="Add prescriptions" bsStyle="info" eventKey="2">
+                
+                <PrescriptionForm callback={this.handlePrescriptionForm} />
+                
               </Panel>
             </PanelGroup>
-            <Button bsStyle="primary" onClick={this.openModal}>New Contact</Button>
+            <Button bsStyle="primary" onClick={this.handlePostPrescription}>Submit</Button>
           </div>
         </div>
       </Grid>
@@ -142,29 +168,22 @@ class App extends Component {
 }
 
 App.propTypes = {
-  selectedReddit: PropTypes.string.isRequired,
-  posts: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired,
-  lastUpdated: PropTypes.number,
+  fullstate: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired,
+  prescriptions: PropTypes.array.isRequired,
+  contacts: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
-  const { selectedReddit, postsByReddit } = state
-  const {
-    isFetching,
-    lastUpdated,
-    items: posts
-  } = postsByReddit[selectedReddit] || {
-    isFetching: true,
-    items: []
-  }
+  const { user, prescriptions, contacts } = state
+  const fullstate = state
 
   return {
-    selectedReddit,
-    posts,
-    isFetching,
-    lastUpdated
+    fullstate,
+    user, 
+    prescriptions,
+    contacts
   }
 }
 

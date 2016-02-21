@@ -10,11 +10,11 @@ import {
 } from '../actions'
 
 //change the user to the entered name (check input??)
-function userName(state = "", action) {
+function user(state = { userName:"" }, action) {
   switch (action.type) {
     case CHANGE_USER:
       return Object.assign({}, state, {
-        userName: action.userName
+        userName: action.username
       })
     default:
       return state
@@ -29,6 +29,7 @@ function prescription(state, action) {
         Name: action.prescription.Name,
         NumOfDoses: action.prescription.NumOfDoses,
         DoseTimes: action.prescription.DoseTimes,
+        EndDate: action.prescription.EndDate,
         Frequency: action.prescription.Frequency,
         Duration: action.prescription.Duration,  
         PillsTaken: action.prescription.PillsTaken,
@@ -177,11 +178,11 @@ function postsByReddit(state = { }, action) {
 }
 
 const rootReducer = combineReducers({
-  userName,
+  user,
   prescriptions,
   contacts,
-  postsByReddit,
-  selectedReddit
+  //postsByReddit,
+  //selectedReddit
 })
 
 export default rootReducer
