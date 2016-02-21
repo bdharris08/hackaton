@@ -58,9 +58,16 @@ export function postPrescription(prescription) {
 
     $.ajax({
       url: 'http://104.197.214.44:9999/savePrescription',
-      dataType: 'json',
+      //dataType: 'json',
       type: 'POST',
+      //crossDomain: true,
+      data: bodyText,
       cache: false,
+
+      /*headers: {
+        //'Content-Type':'application/json', 
+        'Access-Control-Allow-Origin': '*'
+      },*/
       success: function(data) {
         console.log('success!');
       }.bind(this),
